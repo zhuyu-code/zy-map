@@ -2,7 +2,7 @@
   "name": "zy-map",
   "version": "1.0.5",
   "description": "这是一个在webpack打包结束后统一上传source-map和统一上传错误的插件",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,9 +10,13 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "form-data": "^3.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-preset-stage-2": "^6.24.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zhuyu-code/zy-map.git"
