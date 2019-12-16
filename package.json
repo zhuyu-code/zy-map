@@ -1,0 +1,15 @@
+{
+  "name": "zy-map",
+  "version": "1.0.3",
+  "description": "这是一个在webpack打包结束后统一上传source-map和统一上传错误的插件",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zhuyu",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "form-data": "^3.0.0"
+  }
+}
