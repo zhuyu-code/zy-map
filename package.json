@@ -1,6 +1,6 @@
 {
   "name": "zy-map",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "这是一个在webpack打包结束后统一上传source-map和统一上传错误的插件",
   "main": "index.js",
   "scripts": {
@@ -11,5 +11,17 @@
   "dependencies": {
     "axios": "^0.19.0",
     "form-data": "^3.0.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhuyu-code/zy-map.git"
+  },
+  "keywords": [
+    "source-map打包后统一上传source-map文件到指定服务器"
+  ],
+  "bugs": {
+    "url": "https://github.com/zhuyu-code/zy-map/issues"
+  },
+  "homepage": "https://github.com/zhuyu-code/zy-map#readme"
 }
