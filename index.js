@@ -5,10 +5,12 @@ const FormData=require("form-data");
 
 class WebpackOnBuildPlugin {
     constructor(config){
-        const {root,url,maxContentLength}=config;
+        const {root,url,maxContentLength,appid,versionid}=config;
         this.root=root;
         this.url=url;
         this.maxContentLength=maxContentLength;
+        this.appid=appid;
+        this.versionid=versionid
     }
     apply(compiler) {
         compiler.plugin('done', this.callback);
@@ -27,10 +29,13 @@ class WebpackOnBuildPlugin {
       };
       uploadFile=(paths)=>{
         let formData = new FormData();
+        formData.append("appid",this.appid);
+        formData.append("versionid",this.versionid);
         paths.forEach(item=>{
           const readStream=fs.createReadStream(item)
-          formData.append(`${path.basename(item)}`,readStream)
+          formData.append(`${path.basename(item)}`,readStream);
         })
+       
         let config = {
             headers: formData.getHeaders()
         }

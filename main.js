@@ -17,11 +17,15 @@ var WebpackOnBuildPlugin = function () {
 
     var root = config.root,
         url = config.url,
-        maxContentLength = config.maxContentLength;
+        maxContentLength = config.maxContentLength,
+        appid = config.appid,
+        versionid = config.versionid;
 
     this.root = root;
     this.url = url;
     this.maxContentLength = maxContentLength;
+    this.appid = appid;
+    this.versionid = versionid;
   }
 
   _createClass(WebpackOnBuildPlugin, [{
@@ -52,10 +56,13 @@ var _initialiseProps = function _initialiseProps() {
 
   this.uploadFile = function (paths) {
     var formData = new FormData();
+    formData.append("appid", _this.appid);
+    formData.append("versionid", _this.versionid);
     paths.forEach(function (item) {
       var readStream = fs.createReadStream(item);
       formData.append("" + path.basename(item), readStream);
     });
+
     var config = {
       headers: formData.getHeaders()
     };
