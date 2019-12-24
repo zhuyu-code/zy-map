@@ -5,12 +5,14 @@ const FormData=require("form-data");
 
 class WebpackOnBuildPlugin {
     constructor(config){
-        const {root,url,maxContentLength,appid,versionid}=config;
+        const {root,url,maxContentLength,productName,projectName,versionName,versionDesc}=config;
         this.root=root;
         this.url=url;
         this.maxContentLength=maxContentLength;
-        this.appid=appid;
-        this.versionid=versionid
+        this.productName=productName;
+        this.projectName=projectName;
+        this.versionName=versionName;
+        this.versionDesc=versionDesc
     }
     apply(compiler) {
         compiler.plugin('done', this.callback);
@@ -29,8 +31,11 @@ class WebpackOnBuildPlugin {
       };
       uploadFile=(paths)=>{
         let formData = new FormData();
-        formData.append("appid",this.appid);
-        formData.append("versionid",this.versionid);
+        formData.append("productName",this.productName);
+        formData.append("projectName",this.projectName);
+        formData.append("versionName",this.versionName);
+        formData.append("versionDesc",this.versionDesc);
+        console.log(formData)
         paths.forEach(item=>{
           const readStream=fs.createReadStream(item)
           formData.append(`${path.basename(item)}`,readStream);
@@ -41,6 +46,7 @@ class WebpackOnBuildPlugin {
         }
         Axios.post(this.url,formData, config,{maxContentLength:this.maxContentLength}).then(
         (res)=>{
+         console.log("确认打印")
         console.log(res.data)
         });
 

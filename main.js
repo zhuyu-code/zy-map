@@ -18,14 +18,18 @@ var WebpackOnBuildPlugin = function () {
     var root = config.root,
         url = config.url,
         maxContentLength = config.maxContentLength,
-        appid = config.appid,
-        versionid = config.versionid;
+        productName = config.productName,
+        projectName = config.projectName,
+        versionName = config.versionName,
+        versionDesc = config.versionDesc;
 
     this.root = root;
     this.url = url;
     this.maxContentLength = maxContentLength;
-    this.appid = appid;
-    this.versionid = versionid;
+    this.productName = productName;
+    this.projectName = projectName;
+    this.versionName = versionName;
+    this.versionDesc = versionDesc;
   }
 
   _createClass(WebpackOnBuildPlugin, [{
@@ -56,8 +60,11 @@ var _initialiseProps = function _initialiseProps() {
 
   this.uploadFile = function (paths) {
     var formData = new FormData();
-    formData.append("appid", _this.appid);
-    formData.append("versionid", _this.versionid);
+    formData.append("productName", _this.productName);
+    formData.append("projectName", _this.projectName);
+    formData.append("versionName", _this.versionName);
+    formData.append("versionDesc", _this.versionDesc);
+    console.log(formData);
     paths.forEach(function (item) {
       var readStream = fs.createReadStream(item);
       formData.append("" + path.basename(item), readStream);
@@ -67,6 +74,7 @@ var _initialiseProps = function _initialiseProps() {
       headers: formData.getHeaders()
     };
     Axios.post(_this.url, formData, config, { maxContentLength: _this.maxContentLength }).then(function (res) {
+      console.log("确认打印");
       console.log(res.data);
     });
   };
