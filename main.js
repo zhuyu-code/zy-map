@@ -18,16 +18,14 @@ var WebpackOnBuildPlugin = function () {
     var root = config.root,
         url = config.url,
         maxContentLength = config.maxContentLength,
-        productName = config.productName,
-        projectName = config.projectName,
+        projectId = config.projectId,
         versionName = config.versionName,
         versionDesc = config.versionDesc;
 
     this.root = root;
     this.url = url;
     this.maxContentLength = maxContentLength;
-    this.productName = productName;
-    this.projectName = projectName;
+    this.projectId = projectId;
     this.versionName = versionName;
     this.versionDesc = versionDesc;
   }
@@ -60,8 +58,7 @@ var _initialiseProps = function _initialiseProps() {
 
   this.uploadFile = function (paths) {
     var formData = new FormData();
-    formData.append("productName", _this.productName);
-    formData.append("projectName", _this.projectName);
+    formData.append("projectId", _this.projectId);
     formData.append("versionName", _this.versionName);
     formData.append("versionDesc", _this.versionDesc);
     console.log(formData);

@@ -5,14 +5,13 @@ const FormData=require("form-data");
 
 class WebpackOnBuildPlugin {
     constructor(config){
-        const {root,url,maxContentLength,productName,projectName,versionName,versionDesc}=config;
+        const {root,url,maxContentLength,projectId,versionName,versionDesc}=config;
         this.root=root;
         this.url=url;
         this.maxContentLength=maxContentLength;
-        this.productName=productName;
-        this.projectName=projectName;
+        this.projectId=projectId;
         this.versionName=versionName;
-        this.versionDesc=versionDesc
+        this.versionDesc=versionDesc;
     }
     apply(compiler) {
         compiler.plugin('done', this.callback);
@@ -31,8 +30,7 @@ class WebpackOnBuildPlugin {
       };
       uploadFile=(paths)=>{
         let formData = new FormData();
-        formData.append("productName",this.productName);
-        formData.append("projectName",this.projectName);
+        formData.append("projectId",this.projectId);
         formData.append("versionName",this.versionName);
         formData.append("versionDesc",this.versionDesc);
         console.log(formData)
