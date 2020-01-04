@@ -1,6 +1,6 @@
 {
   "name": "zy-map",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "这是一个在webpack打包结束后统一上传source-map和统一上传错误的插件",
   "main": "main.js",
   "scripts": {
